@@ -14,7 +14,7 @@ namespace API_GrupoE.Controllers
         // GET api/values
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [ActionName("Agenda")]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> GetAgenda()
         {
             char[] delimited = { ';', ',' };
             List<string> list = new List<string>();
@@ -69,11 +69,20 @@ namespace API_GrupoE.Controllers
             return list;
         }
         // GET api/values/5
-        public string Get(int id)
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [ActionName("Wifi_locations")]
+        public string GetWifiId(int id)
         {
-            return "value";
+            List<string> list = (List<string>)GetWifi();
+            return list.ElementAt(id);
         }
-
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [ActionName("Agenda")]
+        public string GetEventId(int id)
+        {
+            List<string> list = (List<string>)GetAgenda();
+            return list.ElementAt(id);
+        }
         // POST api/values
         public void Post([FromBody]string value)
         {
